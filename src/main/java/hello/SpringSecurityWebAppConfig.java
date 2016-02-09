@@ -8,7 +8,8 @@ import static com.stormpath.spring.config.StormpathWebSecurityConfigurer.stormpa
 
 @Configuration
 public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
-    protected void doConfigure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .apply(stormpath()).and()
                 .authorizeRequests()
