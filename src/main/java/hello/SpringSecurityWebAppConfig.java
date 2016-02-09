@@ -3,6 +3,7 @@ package hello;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 import static com.stormpath.spring.config.StormpathWebSecurityConfigurer.stormpath;
 
@@ -10,9 +11,12 @@ import static com.stormpath.spring.config.StormpathWebSecurityConfigurer.stormpa
 public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .apply(stormpath()).and()
+        http.apply(stormpath()).and()
+                .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/").permitAll();
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .httpBasic();
     }
 }
