@@ -1,0 +1,9 @@
+# Rename this to application.yaml and replace with Stormpath values.
+stormpath:
+  apiKey:
+    id: replace-with-your-value
+    secret: replace-with-your-value
+  application:
+    href: https://api.stormpath.com/v1/applications/replace-with-your-value
+hello:
+  admin-group: https://api.stormpath.com/v1/groups/replace-with-your-value
